@@ -1,4 +1,4 @@
-package com.example.MoocJavaWeb.ItemDatabase;
+package com.example.MoocJavaWeb.PersonDatabase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,20 +8,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class ItemDatabaseController {
+public class PersonDatabaseController {
 
     @Autowired
-    private ItemRepository itemRepository;
+    private PersonRepository personRepository;
 
     @GetMapping("/")
-    public String list(Model model){
-        model.addAttribute("items", this.itemRepository.findAll());
-        return "index2";
+    public String listPersons(Model model) {
+        model.addAttribute("persons", this.personRepository.findAll());
+        return "index3";
     }
 
     @PostMapping("/")
-    public String add(@RequestParam String name){
-        itemRepository.save(new Item(name));
+    public String createPerson(@RequestParam String name) {
+        personRepository.save(new Person(name));
         return "redirect:/";
     }
+
 }
+

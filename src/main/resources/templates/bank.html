@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clients and their accounts</title>
+</head>
+
+<body>
+<h1>Prosta Bankowość</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nazwa klienta</th>
+        <th>Numer name</th>
+        <th>Kwota na koncie</th>
+    </tr>
+    </thead>
+
+    <tbody th:each="client : ${clients}">
+    <tr th:each="account : ${client.accounts}">
+        <td th:text="${client.name}">Nazwa klienta</td>
+        <td th:text="${account.iban}">Numer iban</td>
+        <td th:text="${account.balance}">Kwota na koncie</td>
+    </tr>
+    </tbody>
+</table>
+
+
+Dodaj konto klienta</h2>
+
+<p>Jeśli konto nie istnieje, to zostanie ono stworzone</p>
+
+<form th:action="@{/}" method="POST">
+    <span>Nazwa klienta:</span><br/>
+    <input type="text" name="nazwa"/><br/>
+    <span>Numer iban:</span><br/>
+    <input type="text" name="iban"/><br/>
+
+    <input type="submit" value="Dodaj!"/>
+</form>
+</body>
+</html>
